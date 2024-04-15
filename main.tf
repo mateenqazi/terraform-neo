@@ -48,4 +48,16 @@ resource "aws_elastic_beanstalk_environment" "tfenvtest" {
     value     = "true"
   }
 
+  setting {
+    namespace = "aws:ec2:vpc"
+    name      = "VPCId"
+    value     = module.vpc.vpc_id
+  }
+
+  setting {
+    namespace = "aws:ec2:vpc"
+    name      = "Subnets"
+    value     = join(",", module.vpc.public_subnets)
+  }
+
 }
